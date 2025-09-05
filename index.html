@@ -19,12 +19,42 @@
             #date {
                 font-size: 1.5em;
             }
+            #dashboard {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin: 50px 20px;
+            }
+            .dash-box {
+                background-color: #4CAF50;
+                padding: 40px 30px;
+                border-radius: 15px;
+                color: white;
+                font-size: 1.5em;
+                font-weight: bold;
+                text-decoration: none;
+                width: 150px;
+                text-align: center;
+                transition: background-color 0.3s;
+            }
+            .dash-box:hover {
+                background-color: #45a049;
+            }
         </style>
     </head>
     <body>
 
         <div id="clock">00:00:00</div>
         <div id="date">00.00.0000</div>
+        
+        <div id="dashboard">
+            <a href="index.html" class="dash-box">Home</a>
+            <a href="chat.html" class="dash-box">Chat</a>
+            <a href="quizzes.html" class="dash-box">Quiz</a>
+            <a href="contact.html" class="dash-box">Contact</a>
+            <a href="login.html" class="dash-box">Login</a>
+        </div>
         
         <!-- Link2Javascript -->
          <script src="clock.js"></script>
