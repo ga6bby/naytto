@@ -31,6 +31,22 @@
     background-color: #777;
 }
 
+/* Highlight correct and wrong answers */
+#options button.correct {
+    background-color: #4CAF50; /* green */
+    color: white;
+}
+
+#options button.wrong {
+    background-color: #f44336; /* red */
+    color: white;
+}
+
+/* Highlight the selected button (optional) */
+#options button.selected {
+    border: 2px solid #fff;
+}
+
 /* next button */
 #next-btn {
     margin-top: 20px;

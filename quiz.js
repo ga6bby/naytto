@@ -94,6 +94,15 @@ const nextBtn = document.getElementById("next-btn");
 const scoreEl = document.getElementById("score");
 const quizContainer = document.getElementById("quiz-container");
 
+// score at top
+const scoreDisplay = document.createElement("div");
+scoreDisplay.id = "score-display";
+scoreDisplay.style.fontWeight = "bold";
+scoreDisplay.style.marginBottom = "20px";
+scoreDisplay.textContent = `Score: ${score}`;
+quizContainer.prepend(scoreDisplay);
+
+
 function showQuestion() {
     optionsEl.innerHTML = "";
     selectedAnswer = null;
@@ -124,20 +133,34 @@ nextBtn.addEventListener("click", () => {
     if (!selectedAnswer) return; // safety check
 
     const q = quizData[currentQuestion];
-    if (selectedAnswer === q.answer) {
-        score++; // add point for correct answer
-    }
+    // highlight correct and wrong answers
+    Array.from(optionsEl.children).forEach(btn => {
+        if (btn.textContent === q.answer) {
+            btn.classList.add("correct"); // green
+        } else if (btn.textContent === selectedAnswer) {
+            btn.classList.add("wrong"); // red
+        }
+        btn.disabled = true;
+    });
 
+    // new score if correct
+    if (selectedAnswer === q.answer) score++;
+    scoreDisplay.textContent = `Score: ${score}`;
+
+    // next question delay
     currentQuestion++;
-
     if (currentQuestion < quizData.length) {
-        showQuestion();
+        setTimeout(() => {
+            showQuestion();
+        }, 800); // 0.8s delay to see colors
     } else {
-        quizContainer.style.display = "none";
-        scoreEl.style.display = "block";
-        scoreEl.textContent = `Your score: ${score}/${quizData.length}`;
+        setTimeout(() => {
+            quizContainer.style.display = "none";
+            scoreEl.style.display = "block";
+            scoreEl.textContent = `Final Score: ${score}/${quizData.length}`;
+        }, 800);
     }
 });
 
-// Show first question
+// first question
 showQuestion();
