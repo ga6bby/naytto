@@ -1,0 +1,49 @@
+#quiz-container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: left;
+    background-color: #333;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* question */
+#question {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#options button:hover {
+    background-color: #777;
+}
+
+/* next button */
+#next-btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#next-btn:hover {
+    background-color: #45a049;
+}
