@@ -39,11 +39,11 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #00ff08;
     color: white;
     transition: background-color 0.3s;
 }
 
 #next-btn:hover {
-    background-color: #45a049;
+    background-color: #03ca03;
 }
