@@ -86,6 +86,7 @@ const quizData = [
 
 let currentQuestion = 0;
 let score = 0;
+let selectedAnswer = null;
 
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
@@ -95,28 +96,48 @@ const quizContainer = document.getElementById("quiz-container");
 
 function showQuestion() {
     optionsEl.innerHTML = "";
+    selectedAnswer = null;
+    nextBtn.disabled = true; // disable until an option is selected
+
     const q = quizData[currentQuestion];
     questionEl.textContent = q.question;
 
     q.options.forEach(option => {
         const btn = document.createElement("button");
         btn.textContent = option;
-        btn.addEventListener("click", () => selectAnswer(option));
+        btn.addEventListener("click", () => selectAnswer(option, btn));
         optionsEl.appendChild(btn);
     });
 }
 
-function selectAnswer(selected) {
+function selectAnswer(option, btn) {
+    selectedAnswer = option;
+
+    // Highlight button
+    Array.from(optionsEl.children).forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+
+    nextBtn.disabled = false; // next button
+}
+
+nextBtn.addEventListener("click", () => {
+    if (!selectedAnswer) return; // safety check
+
     const q = quizData[currentQuestion];
-    if(selected === q.answer) score++;
+    if (selectedAnswer === q.answer) {
+        score++; // add point for correct answer
+    }
+
     currentQuestion++;
-    if(currentQuestion < quizData.length) {
+
+    if (currentQuestion < quizData.length) {
         showQuestion();
     } else {
         quizContainer.style.display = "none";
         scoreEl.style.display = "block";
         scoreEl.textContent = `Your score: ${score}/${quizData.length}`;
     }
-}
+});
 
+// Show first question
 showQuestion();
